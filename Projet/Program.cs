@@ -13,9 +13,8 @@ namespace Projet
             NomFichier = Console.ReadLine();
             Carte Carte = new Carte(".\\..\\..\\..\\" + NomFichier + ".txt");
 
-            Carte.AffichageCarte();
             Carte.Cryptage();
-            Carte.AffichageTableauValeur();
+            Carte.AffichageCarteCrypter();
 
         }
 
