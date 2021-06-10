@@ -8,5 +8,13 @@ namespace Projet
 {
     class Parcelle
     {
+        private char Type;
+        private uint NombreUnite;
+
+        public Parcelle(char type, uint nombreUnite)
+        {
+            Type = type;
+            NombreUnite = nombreUnite;
+        }
     }
 }
