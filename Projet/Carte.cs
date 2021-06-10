@@ -75,9 +75,12 @@ namespace Projet
         {
             uint position = 0;
 
+            //Parcours le tableau pour pourvoir l'afficher
             foreach(int valeur in carteCrypter)
             {
                 position++;
+
+                //Pour faire un affichage visible, au bout de 10 valeurs, une barre apparait
                 if(position != 10)
                 {
                     Console.Write("{0}:", valeur);
@@ -96,6 +99,7 @@ namespace Projet
         {
             int ligne = 0, colone = 0;
 
+            //Attribution des valeurs commune à toutes les cartes
             for (ligne = 0; ligne < 10; ligne++)
             {
                 for (colone = 0; colone < 10; colone++)
@@ -142,8 +146,10 @@ namespace Projet
         {
             int ligne, colone;
 
+            //Initialise le tableau avec les valeurs déjà connu
             InitCarteCrypter();
-
+            
+            //Vérification d'une frontière Est pour chaque unité. Parcours du tableau de gauche à droite.
             for (ligne = 0; ligne < 10; ligne++)
             {
                 for (colone = 0; colone < 9; colone++)
@@ -155,6 +161,7 @@ namespace Projet
                 }
             }
 
+            //Vérification d'une frontière Ouest pour chaque unité. Parcours du tableau de droite à gauche.
             for (ligne = 0; ligne < 10; ligne++)
             {
                 for (colone = 1; colone < 10; colone++)
@@ -166,6 +173,7 @@ namespace Projet
                 }
             }
 
+            //Vérification d'une frontière Nord pour chaque unité. Parcours du tableau bas en haut.
             for (ligne = 0; ligne < 9; ligne++)
             {
                 for (colone = 0; colone < 10; colone++)
@@ -177,6 +185,7 @@ namespace Projet
                 }
             }
 
+            //Vérification d'une frontière Sud pour chaque unité. Parcours du tableau haut en bas.
             for (ligne = 1; ligne < 10; ligne++)
             {
                 for (colone = 0; colone < 10; colone++)
