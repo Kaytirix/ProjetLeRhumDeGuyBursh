@@ -9,61 +9,121 @@ namespace Projet
 {
     class Carte
     {
+        #region Attribut
         private char[,] TableauCaractere = new char[10,10];
+        private int[,] tableauValeur = new int[10, 10];
+        #endregion
 
+        #region Constructeur
         public Carte(string CheminAccesFichier)
         {
             StreamReader ligne = new StreamReader(CheminAccesFichier);
             string str;
-            int i = 0;
+            int ligne_ = 0;
 
             while ((str = ligne.ReadLine()) != null)
             {
-                for (i = 0; i < 10; i++)
+                for (ligne_ = 0; ligne_ < 10; ligne_++)
                 {
-                    for (int j = 0; j < 10; j++)
+                    for (int colone = 0; colone < 10; colone++)
                     {
-                        TableauCaractere[i, j] = str[j];
+                        TableauCaractere[ligne_, colone] = str[colone];
                     }
                     str = ligne.ReadLine();
                 }
             }
             ligne.Close();
         }
+        #endregion
 
+
+        #region Méthode
         public void AffichageCarte()
         {
-            int ligne, colone;
+            uint position = 0;
 
-            for (ligne = 0; ligne < 10; ligne++)
+            foreach (char carac in TableauCaractere)
             {
-                for (colone = 0; colone < 10; colone++)
+                position++;
+                if (position != 10)
                 {
-                    Console.Write("{0}", TableauCaractere[ligne, colone]);
+                    Console.Write("{0}", carac);
                 }
-                Console.Write("\n");
+                else
+                {
+                    Console.Write("\n");
+                    position = 0;
+                }
             }
             Console.Write("\n");
         }
 
         public void AffichageTableauValeur()
         {
-            int ligne, colone;
+            uint position = 0;
+
+            foreach(int valeur in tableauValeur)
+            {
+                position++;
+                if(position != 10)
+                {
+                    Console.Write("{0}:", valeur);
+                }else
+                {
+                    Console.Write("{0}|", valeur);
+                    position = 0;
+                }
+            }
+        }
+
+        public void InitTableauValeur()
+        {
+            int ligne = 0, colone = 0;
 
             for (ligne = 0; ligne < 10; ligne++)
             {
                 for (colone = 0; colone < 10; colone++)
                 {
-                    Console.Write("{0}:", tableauValeur[ligne, colone]);
+                    if (colone == 0)
+                    {
+                        tableauValeur[ligne, colone] = tableauValeur[ligne, colone] + 2;
+                    }
+
+                    if (ligne == 0)
+                    {
+                        tableauValeur[ligne, colone] = tableauValeur[ligne, colone] + 1;
+                    }
+
+                    if (ligne == 9)
+                    {
+                        tableauValeur[ligne, colone] = tableauValeur[ligne, colone] + 4;
+                    }
+
+                    if (colone == 9)
+                    {
+                        tableauValeur[ligne, colone] = tableauValeur[ligne, colone] + 8;
+                    }
+
+                    if (TableauCaractere[ligne, colone] == 'M')
+                    {
+                        tableauValeur[ligne, colone] = tableauValeur[ligne, colone] + 64;
+                    }
+                    else
+                    {
+                        if (TableauCaractere[ligne, colone] == 'F')
+                        {
+                            tableauValeur[ligne, colone] = tableauValeur[ligne, colone] + 32;
+                        }
+                    }
                 }
-                Console.Write("\n");
             }
-            Console.Write("\n");
         }
 
         public void Cryptage()
         {
             int ligne, colone;
+
+            InitTableauValeur();
 
             for (ligne = 0; ligne < 10; ligne++)
             {
@@ -108,7 +168,8 @@ namespace Projet
                     }
                 }
             }
-
         }
+
+        #endregion
     }
 }

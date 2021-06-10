@@ -11,11 +11,12 @@ namespace Projet
 
             Console.WriteLine("Le nom du fichier :");
             NomFichier = Console.ReadLine();
-            Carte Carte = new Carte("C:\\Users\\sebas\\Desktop\\Projet\\Projet\\Projet\\" + NomFichier + ".txt");
+            Carte Carte = new Carte(".\\..\\..\\..\\" + NomFichier + ".txt");
 
             Carte.AffichageCarte();
             Carte.Cryptage();
             Carte.AffichageTableauValeur();
+
         }
 
     }
