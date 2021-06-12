@@ -97,42 +97,42 @@ namespace Projet
         /// </summary>
         public void InitCarteCrypter()
         {
-            int ligne = 0, colone = 0;
+            int ligne = 0, colonne = 0;
 
             //Attribution des valeurs commune à toutes les cartes
             for (ligne = 0; ligne < 10; ligne++)
             {
-                for (colone = 0; colone < 10; colone++)
+                for (colonne = 0; colonne < 10; colonne++)
                 {
-                    if (colone == 0)
+                    if (colonne == 0)
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 2;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 2;
                     }
 
                     if (ligne == 0)
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 1;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 1;
                     }
 
                     if (ligne == 9)
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 4;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 4;
                     }
 
-                    if (colone == 9)
+                    if (colonne == 9)
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 8;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 8;
                     }
 
-                    if (tableauCarte[ligne, colone] == 'M')
+                    if (tableauCarte[ligne, colonne] == 'M')
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 64;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 64;
                     }
                     else
                     {
-                        if (tableauCarte[ligne, colone] == 'F')
+                        if (tableauCarte[ligne, colonne] == 'F')
                         {
-                            carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 32;
+                            carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 32;
                         }
                     }
                 }
@@ -144,7 +144,7 @@ namespace Projet
         /// </summary>
         public void Cryptage()
         {
-            int ligne, colone;
+            int ligne, colonne;
 
             //Initialise le tableau avec les valeurs déjà connu
             InitCarteCrypter();
@@ -152,11 +152,11 @@ namespace Projet
             //Vérification d'une frontière Est pour chaque unité. Parcours du tableau de gauche à droite.
             for (ligne = 0; ligne < 10; ligne++)
             {
-                for (colone = 0; colone < 9; colone++)
+                for (colonne = 0; colonne < 9; colonne++)
                 {
-                    if (tableauCarte[ligne, colone] != tableauCarte[ligne, colone + 1])
+                    if (tableauCarte[ligne, colonne] != tableauCarte[ligne, colonne + 1])
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 8;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 8;
                     }
                 }
             }
@@ -164,11 +164,11 @@ namespace Projet
             //Vérification d'une frontière Ouest pour chaque unité. Parcours du tableau de droite à gauche.
             for (ligne = 0; ligne < 10; ligne++)
             {
-                for (colone = 1; colone < 10; colone++)
+                for (colonne = 1; colonne < 10; colonne++)
                 {
-                    if (tableauCarte[ligne, colone] != tableauCarte[ligne, colone - 1])
+                    if (tableauCarte[ligne, colonne] != tableauCarte[ligne, colonne - 1])
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 2;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 2;
                     }
                 }
             }
@@ -176,11 +176,11 @@ namespace Projet
             //Vérification d'une frontière Nord pour chaque unité. Parcours du tableau bas en haut.
             for (ligne = 0; ligne < 9; ligne++)
             {
-                for (colone = 0; colone < 10; colone++)
+                for (colonne = 0; colonne < 10; colonne++)
                 {
-                    if (tableauCarte[ligne, colone] != tableauCarte[ligne +1, colone])
+                    if (tableauCarte[ligne, colonne] != tableauCarte[ligne +1, colonne])
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 4;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 4;
                     }
                 }
             }
@@ -188,11 +188,11 @@ namespace Projet
             //Vérification d'une frontière Sud pour chaque unité. Parcours du tableau haut en bas.
             for (ligne = 1; ligne < 10; ligne++)
             {
-                for (colone = 0; colone < 10; colone++)
+                for (colonne = 0; colonne < 10; colonne++)
                 {
-                    if (tableauCarte[ligne, colone] != tableauCarte[ligne -1, colone])
+                    if (tableauCarte[ligne, colonne] != tableauCarte[ligne -1, colonne])
                     {
-                        carteCrypter[ligne, colone] = carteCrypter[ligne, colone] + 1;
+                        carteCrypter[ligne, colonne] = carteCrypter[ligne, colonne] + 1;
                     }
                 }
             }
